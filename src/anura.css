@@ -172,3 +172,44 @@ body.blur-disable .custom-menu {
 	left: 303px;
 	bottom: 0.75em;
 }
+
+.anura-ripple-layer {
+	position: fixed;
+	pointer-events: none;
+	z-index: 2147483647;
+	overflow: hidden;
+	transform: translateZ(0);
+}
+
+.anura-ripple {
+	position: absolute;
+	display: block;
+	border-radius: 50%;
+	background-color: currentColor;
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0);
+}
+
+.anura-ripple.active {
+	animation: anura-ripple 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes anura-ripple {
+	0% {
+		opacity: 0.18;
+		transform: translate(-50%, -50%) scale(0);
+	}
+	65% {
+		opacity: 0.08;
+	}
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.anura-ripple.active {
+		animation-duration: 0.25s;
+	}
+}
